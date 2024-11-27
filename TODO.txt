@@ -1,0 +1,4 @@
+Tagger
+    -   Adjectives are missing feminine forms
+    -   Verbos are missing conjugations
+    -   Solve homophone issue, ex. vivo(v) and vivo(adj)

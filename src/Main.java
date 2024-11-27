@@ -1,5 +1,7 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
+
+        Tagger tagger = new Tagger();
+        tagger.tag("data/testInput.txt");
     }
 }
