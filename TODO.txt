@@ -1,4 +1,17 @@
 Tagger
-    -   Adjectives are missing feminine forms
+    -   Implement pass 1
     -   Verbos are missing conjugations
+    -   Some nouns are missing plurals
     -   Solve homophone issue, ex. vivo(v) and vivo(adj)
+    -   Separately process phrasals
+
+
+ With regards to phrasals, at least those like connectors or prepositionals that
+ start with some sort of word like those tagged in pass 1, perhaps the best approach
+ would be having a set of 'trigger' words that would make the program halt at that particular
+ word and look ahead to see if it matches any known phrases. Maybe each trigger can have a set of
+ associated phrases that are then ruled out one by one as the tagger looks ahead. Either it finds
+ a complete match or empties its phrase list and continues tagging.
+    Also phrasals can be tagged with a special marker
+    ex. "{$En cuanto a$} los ..."
+    The only issue with this I foresee is that this could increase the time complexity considerably for long inputs.

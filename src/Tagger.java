@@ -11,14 +11,31 @@ public class Tagger {
     HashMap<String,String> adverbios;
     HashMap<String,String> sustantivos;
 
-    public Tagger() {
+    String filePath;
+
+    public Tagger(String filePath) {
+        this.filePath = filePath;
+
         adjetivos = Hasher.load("adjetivos");
         verbos = Hasher.load("verbos");
         adverbios = Hasher.load("adverbios");
         sustantivos = Hasher.load("sustantivos");
     }
 
-    public void tag(String filePath) {
+    /* pass 1 will tag the words/structures that have small tables such as
+        prepositions or connectors.
+        pass 2 will tag the words like nouns or verbs that are a large category
+    */
+    public void tag() {
+        tagP1();
+        tagP2();
+    }
+
+    private void tagP1(){
+
+    }
+    private void tagP2(){
+
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
             BufferedWriter writer = new BufferedWriter(new FileWriter("data/out.slt"));
@@ -33,32 +50,31 @@ public class Tagger {
 
                 for ( int i = 0; i < split.length; ++i) {
 
-                     word = processWord(split[i]);
-                     writer.write(word + " ");
+                    word = processWord(split[i]);
+                    writer.write(word + " ");
 
-                    }
+                }
 
                 writer.newLine();
-                }
+            }
 
             reader.close();
             writer.close();
 
-            }
+        }
         catch (Exception e) {
             e.printStackTrace();
         }
     }
-
     //this implementation will not process phrasal structures
     private String processWord(String word) {
 
         String[] wordSplit = trimPunctuation(word);
 
-        if ( adjetivos.get(word) != null) wordSplit[0] = wordSplit[0].concat("@@"); //lexicon lacks feminine forms
-        else if (adverbios.get(word) != null) wordSplit[0] = wordSplit[0].concat("##");
-        else if (verbos.get(word) != null) wordSplit[0] = wordSplit[0].concat("$$"); //lexicon seems to lack conjugations
-        else if (sustantivos.get(word) != null) wordSplit[0] = wordSplit[0].concat("%%");
+        if ( adjetivos.get(wordSplit[0]) != null) wordSplit[0] = wordSplit[0].concat("@@"); //lexicon lacks feminine forms
+        else if (adverbios.get(wordSplit[0]) != null) wordSplit[0] = wordSplit[0].concat("##");
+        else if (verbos.get(wordSplit[0]) != null) wordSplit[0] = wordSplit[0].concat("$$"); //lexicon seems to lack conjugations
+        else if (sustantivos.get(wordSplit[0]) != null) wordSplit[0] = wordSplit[0].concat("%%");
 
         return wordSplit[0] + wordSplit[1]; //adds back punctuation
     }
