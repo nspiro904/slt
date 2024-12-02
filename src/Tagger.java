@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Tagger {
@@ -10,6 +11,14 @@ public class Tagger {
     HashMap<String,String> verbos;
     HashMap<String,String> adverbios;
     HashMap<String,String> sustantivos;
+    HashMap<String,String> preposiciones;
+    HashMap<String,String> pronombres;
+    HashMap<String,String> pronombresIndefinidos;
+    HashMap<String,String> pronombresPosesivos;
+    HashMap<String,String> articulos;
+    HashMap<String,String> conjunciones;
+
+
 
     String filePath;
 
@@ -20,63 +29,63 @@ public class Tagger {
         verbos = Hasher.load("verbos");
         adverbios = Hasher.load("adverbios");
         sustantivos = Hasher.load("sustantivos");
+        preposiciones = Hasher.load("preposiciones");
+        pronombres = Hasher.load("pronombres");
+        pronombresIndefinidos = Hasher.load("pronombresIndefinidos");
+        pronombresPosesivos = Hasher.load("pronombresPosesivos");
+        articulos = Hasher.load("articulos");
+        conjunciones = Hasher.load("conjunciones");
     }
 
-    /* pass 1 will tag the words/structures that have small tables such as
-        prepositions or connectors.
-        pass 2 will tag the words like nouns or verbs that are a large category
-    */
     public void tag() {
-        tagP1();
-        tagP2();
-    }
-
-    private void tagP1(){
-
-    }
-    private void tagP2(){
-
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
             BufferedWriter writer = new BufferedWriter(new FileWriter("data/out.slt"));
 
             String line;
-            String[] split;
-            String word;
+            String[] lineSplit;
+            String processedWord;
 
-            while ( (line = reader.readLine()) != null) {
+            while ((line = reader.readLine()) != null) {
 
-                split = line.split(" ");
+                lineSplit = line.split(" ");
 
-                for ( int i = 0; i < split.length; ++i) {
-
-                    word = processWord(split[i]);
-                    writer.write(word + " ");
-
+                for (String word : lineSplit) {
+                    processedWord = processWord(word);
+                    writer.write(processedWord + " ");
                 }
 
-                writer.newLine();
+                writer.write("\n");
             }
 
             reader.close();
             writer.close();
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
     //this implementation will not process phrasal structures
-    private String processWord(String word) {
+    private String processWord(String w) {
 
-        String[] wordSplit = trimPunctuation(word);
+        String[] word = trimPunctuation(w);
+        ArrayList<String> categories = new ArrayList<>();
 
-        if ( adjetivos.get(wordSplit[0]) != null) wordSplit[0] = wordSplit[0].concat("@@");
-        else if (adverbios.get(wordSplit[0]) != null) wordSplit[0] = wordSplit[0].concat("##");
-        else if (verbos.get(wordSplit[0]) != null) wordSplit[0] = wordSplit[0].concat("$$");
-        else if (sustantivos.get(wordSplit[0]) != null) wordSplit[0] = wordSplit[0].concat("%%");
+        String wordLC = word[0].toLowerCase();
 
-        return wordSplit[0] + wordSplit[1]; //adds back punctuation
+        if (adjetivos.containsKey(wordLC)) categories.add("adj");
+        if (verbos.containsKey(wordLC)) categories.add("v");
+        if (adverbios.containsKey(wordLC)) categories.add("adv");
+        if (sustantivos.containsKey(wordLC)) categories.add("s");
+        if (preposiciones.containsKey(wordLC)) categories.add("p");
+        if (pronombres.containsKey(wordLC)) categories.add("pro");
+        if (pronombresIndefinidos.containsKey(wordLC)) categories.add("proi");
+        if (pronombresPosesivos.containsKey(wordLC)) categories.add("prop");
+        if (articulos.containsKey(wordLC)) categories.add("art");
+
+        String categoriesString = String.join(";", categories);
+
+        return word[0] + "{" + categoriesString + "}" + word[1];
     }
 
     //0 = substring, 1 = punctuation
