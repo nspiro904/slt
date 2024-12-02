@@ -82,6 +82,7 @@ public class Tagger {
         if (pronombresIndefinidos.containsKey(wordLC)) categories.add("proi");
         if (pronombresPosesivos.containsKey(wordLC)) categories.add("prop");
         if (articulos.containsKey(wordLC)) categories.add("art");
+        if (conjunciones.containsKey(wordLC)) categories.add("c");
 
         String categoriesString = String.join(";", categories);
 
