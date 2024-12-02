@@ -15,3 +15,14 @@ Tagger
     Also phrasals can be tagged with a special marker
     ex. "{$En cuanto a$} los ..."
     The only issue with this I foresee is that this could increase the time complexity considerably for long inputs.
+
+There could be a map of triggers. during tagging when a phrasal is encountered add the first word to triggers
+if its not already there.
+but what information does the trigger map entry need to contain?
+Can use a tree! Trigger is the root, phrasals are stored in giant trees
+each node has only a string with whatever word it represents
+
+
+
+perhaps?
+https://stackoverflow.com/questions/73438803/handle-a-token-one-of-two-ways-depending-on-context
