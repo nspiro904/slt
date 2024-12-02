@@ -71,9 +71,9 @@ public class Tagger {
 
         String[] wordSplit = trimPunctuation(word);
 
-        if ( adjetivos.get(wordSplit[0]) != null) wordSplit[0] = wordSplit[0].concat("@@"); //lexicon lacks feminine forms
+        if ( adjetivos.get(wordSplit[0]) != null) wordSplit[0] = wordSplit[0].concat("@@");
         else if (adverbios.get(wordSplit[0]) != null) wordSplit[0] = wordSplit[0].concat("##");
-        else if (verbos.get(wordSplit[0]) != null) wordSplit[0] = wordSplit[0].concat("$$"); //lexicon seems to lack conjugations
+        else if (verbos.get(wordSplit[0]) != null) wordSplit[0] = wordSplit[0].concat("$$");
         else if (sustantivos.get(wordSplit[0]) != null) wordSplit[0] = wordSplit[0].concat("%%");
 
         return wordSplit[0] + wordSplit[1]; //adds back punctuation
