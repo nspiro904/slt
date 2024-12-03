@@ -26,3 +26,6 @@ each node has only a string with whatever word it represents
 
 perhaps?
 https://stackoverflow.com/questions/73438803/handle-a-token-one-of-two-ways-depending-on-context
+
+new tags:
+    coordinating conjunctions
