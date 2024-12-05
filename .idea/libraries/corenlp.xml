@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="corenlp">
+    <CLASSES>
+      <root url="file:///usr/local/lib/corenlp" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file:///usr/local/lib/corenlp" />
+    </SOURCES>
+    <jarDirectory url="file:///usr/local/lib/corenlp" recursive="false" />
+    <jarDirectory url="file:///usr/local/lib/corenlp" recursive="false" type="SOURCES" />
+  </library>
+</component>

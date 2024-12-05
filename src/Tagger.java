@@ -5,6 +5,17 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/*  This is my crude implementation of the POS Tagger before
+    learning of the corenlp library. I am leaving this in here
+    to reflect the amount of work I had spent making this even
+    though it is now irrelevant. I would also like to note that
+    I did not know a POS tagger was already a thing before making this
+    and I actually also called mine a tagger by coincidence.
+
+    I had plans in mind for a much more robust tagger however
+    due to a rapidly approaching due date I made compromises to my design,
+    such as including multiple tags on single words.
+ */
 public class Tagger {
 
     HashMap<String,String> adjetivos;
