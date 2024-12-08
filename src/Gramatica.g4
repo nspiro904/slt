@@ -20,16 +20,22 @@ verb_clause: intr_verbp | tra_verbp | aux_verbp;
 
 //Intransitive verb phrases
 intr_verbp: adp_intr_verbp;
+
 adp_intr_verbp: verb adpp;
 
 //Transitive verb phrases
-tra_verbp: svo_tra_verbp;
+tra_verbp: svo_tra_verbp | vo_tra_verbp;
+
 svo_tra_verbp: nounp_l verb nounp_l ;
+vo_tra_verbp: verb nounp_l; //relies on optional pronoun on verb rule
 
 //Auxiliary verb phrases
-aux_verbp: van_aux_verbp | nvv_aux_verbp;
+aux_verbp: van_aux_verbp | nvv_aux_verbp | nvp_aux_verbp;
+
 van_aux_verbp: AUXILIARY ADJECTIVE nounp_l;  //van = verb adj noun
 nvv_aux_verbp: ADVERB nounp_l AUXILIARY VERB; //I think the tagger must be bugging out labeling 'deliciosa' as a verb, this is to compensate
+nvp_aux_verbp: nounp_l AUXILIARY adpp;
+
 /* Sub Clauses */
 sconjp: noun_sconjp;
 
@@ -43,9 +49,10 @@ nounp_t: COMMA nounp nounp_t | CCONJUNCTION nounp | ;
 
 naked_nounp: determiner noun;
 
-adj_nounp: adjf_nounp;
-adjf_nounp: determiner noun adjective_l;   //adjective final
-
+adj_nounp: f_adj_nounp | l_adj_nounp | lf_adj_nounp;
+f_adj_nounp: determiner noun adjective_l;   //adjective final
+l_adj_nounp: determiner adjective noun;
+lf_adj_nounp: determiner adjective noun adjective_l;
 
 /* Adpositional Phrases */
 adpp: noun_adpp;
@@ -62,7 +69,7 @@ adjective: ADJECTIVE | ADVERB ADJECTIVE;
 //presently determiners are the only things that should be optional
 determiner: DETERMINER | ;
 noun: PROPERNOUN | NOUN;
-verb: VERB | PRONOUN VERB;
+verb: VERB | PRONOUN VERB; //this might not be ideal
 
 /* Lexer Rules */
 PRONOUN: [A-Za-zéáíóúüñ]+ [{] 'PRON' [}] ;

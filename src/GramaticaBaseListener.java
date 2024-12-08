@@ -160,6 +160,18 @@ public class GramaticaBaseListener implements GramaticaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterVo_tra_verbp(GramaticaParser.Vo_tra_verbpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVo_tra_verbp(GramaticaParser.Vo_tra_verbpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterAux_verbp(GramaticaParser.Aux_verbpContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -191,6 +203,18 @@ public class GramaticaBaseListener implements GramaticaListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitNvv_aux_verbp(GramaticaParser.Nvv_aux_verbpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNvp_aux_verbp(GramaticaParser.Nvp_aux_verbpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNvp_aux_verbp(GramaticaParser.Nvp_aux_verbpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -280,13 +304,37 @@ public class GramaticaBaseListener implements GramaticaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAdjf_nounp(GramaticaParser.Adjf_nounpContext ctx) { }
+	@Override public void enterF_adj_nounp(GramaticaParser.F_adj_nounpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAdjf_nounp(GramaticaParser.Adjf_nounpContext ctx) { }
+	@Override public void exitF_adj_nounp(GramaticaParser.F_adj_nounpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterL_adj_nounp(GramaticaParser.L_adj_nounpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitL_adj_nounp(GramaticaParser.L_adj_nounpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterLf_adj_nounp(GramaticaParser.Lf_adj_nounpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLf_adj_nounp(GramaticaParser.Lf_adj_nounpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

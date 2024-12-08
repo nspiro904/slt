@@ -127,6 +127,16 @@ public interface GramaticaListener extends ParseTreeListener {
 	 */
 	void exitSvo_tra_verbp(GramaticaParser.Svo_tra_verbpContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link GramaticaParser#vo_tra_verbp}.
+	 * @param ctx the parse tree
+	 */
+	void enterVo_tra_verbp(GramaticaParser.Vo_tra_verbpContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GramaticaParser#vo_tra_verbp}.
+	 * @param ctx the parse tree
+	 */
+	void exitVo_tra_verbp(GramaticaParser.Vo_tra_verbpContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link GramaticaParser#aux_verbp}.
 	 * @param ctx the parse tree
 	 */
@@ -156,6 +166,16 @@ public interface GramaticaListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitNvv_aux_verbp(GramaticaParser.Nvv_aux_verbpContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GramaticaParser#nvp_aux_verbp}.
+	 * @param ctx the parse tree
+	 */
+	void enterNvp_aux_verbp(GramaticaParser.Nvp_aux_verbpContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GramaticaParser#nvp_aux_verbp}.
+	 * @param ctx the parse tree
+	 */
+	void exitNvp_aux_verbp(GramaticaParser.Nvp_aux_verbpContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link GramaticaParser#sconjp}.
 	 * @param ctx the parse tree
@@ -227,15 +247,35 @@ public interface GramaticaListener extends ParseTreeListener {
 	 */
 	void exitAdj_nounp(GramaticaParser.Adj_nounpContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GramaticaParser#adjf_nounp}.
+	 * Enter a parse tree produced by {@link GramaticaParser#f_adj_nounp}.
 	 * @param ctx the parse tree
 	 */
-	void enterAdjf_nounp(GramaticaParser.Adjf_nounpContext ctx);
+	void enterF_adj_nounp(GramaticaParser.F_adj_nounpContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link GramaticaParser#adjf_nounp}.
+	 * Exit a parse tree produced by {@link GramaticaParser#f_adj_nounp}.
 	 * @param ctx the parse tree
 	 */
-	void exitAdjf_nounp(GramaticaParser.Adjf_nounpContext ctx);
+	void exitF_adj_nounp(GramaticaParser.F_adj_nounpContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GramaticaParser#l_adj_nounp}.
+	 * @param ctx the parse tree
+	 */
+	void enterL_adj_nounp(GramaticaParser.L_adj_nounpContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GramaticaParser#l_adj_nounp}.
+	 * @param ctx the parse tree
+	 */
+	void exitL_adj_nounp(GramaticaParser.L_adj_nounpContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GramaticaParser#lf_adj_nounp}.
+	 * @param ctx the parse tree
+	 */
+	void enterLf_adj_nounp(GramaticaParser.Lf_adj_nounpContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GramaticaParser#lf_adj_nounp}.
+	 * @param ctx the parse tree
+	 */
+	void exitLf_adj_nounp(GramaticaParser.Lf_adj_nounpContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link GramaticaParser#adpp}.
 	 * @param ctx the parse tree
