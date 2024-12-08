@@ -23,15 +23,17 @@ public class GramaticaParser extends Parser {
 		RULE_text = 0, RULE_sentence_list = 1, RULE_sentence_tail = 2, RULE_sentence = 3, 
 		RULE_verbp_l = 4, RULE_verbp_t = 5, RULE_verbp = 6, RULE_verb_clause = 7, 
 		RULE_intr_verbp = 8, RULE_adp_intr_verbp = 9, RULE_tra_verbp = 10, RULE_svo_tra_verbp = 11, 
-		RULE_sconjp = 12, RULE_noun_sconjp = 13, RULE_nounp = 14, RULE_naked_nounp = 15, 
-		RULE_adj_nounp = 16, RULE_adjf_nounp = 17, RULE_adpp = 18, RULE_noun_adpp = 19, 
-		RULE_adjective_l = 20, RULE_adjective_t = 21, RULE_adjective = 22, RULE_determiner = 23, 
-		RULE_noun = 24, RULE_verb = 25;
+		RULE_aux_verbp = 12, RULE_van_aux_verbp = 13, RULE_nvv_aux_verbp = 14, 
+		RULE_sconjp = 15, RULE_noun_sconjp = 16, RULE_nounp = 17, RULE_nounp_l = 18, 
+		RULE_nounp_t = 19, RULE_naked_nounp = 20, RULE_adj_nounp = 21, RULE_adjf_nounp = 22, 
+		RULE_adpp = 23, RULE_noun_adpp = 24, RULE_adjective_l = 25, RULE_adjective_t = 26, 
+		RULE_adjective = 27, RULE_determiner = 28, RULE_noun = 29, RULE_verb = 30;
 	private static String[] makeRuleNames() {
 		return new String[] {
 			"text", "sentence_list", "sentence_tail", "sentence", "verbp_l", "verbp_t", 
 			"verbp", "verb_clause", "intr_verbp", "adp_intr_verbp", "tra_verbp", 
-			"svo_tra_verbp", "sconjp", "noun_sconjp", "nounp", "naked_nounp", "adj_nounp", 
+			"svo_tra_verbp", "aux_verbp", "van_aux_verbp", "nvv_aux_verbp", "sconjp", 
+			"noun_sconjp", "nounp", "nounp_l", "nounp_t", "naked_nounp", "adj_nounp", 
 			"adjf_nounp", "adpp", "noun_adpp", "adjective_l", "adjective_t", "adjective", 
 			"determiner", "noun", "verb"
 		};
@@ -126,7 +128,7 @@ public class GramaticaParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(52);
+			setState(62);
 			sentence_list();
 			}
 		}
@@ -169,9 +171,9 @@ public class GramaticaParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(54);
+			setState(64);
 			sentence();
-			setState(55);
+			setState(65);
 			sentence_tail();
 			}
 		}
@@ -212,7 +214,7 @@ public class GramaticaParser extends Parser {
 		Sentence_tailContext _localctx = new Sentence_tailContext(_ctx, getState());
 		enterRule(_localctx, 4, RULE_sentence_tail);
 		try {
-			setState(61);
+			setState(71);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case PRONOUN:
@@ -220,11 +222,13 @@ public class GramaticaParser extends Parser {
 			case PROPERNOUN:
 			case NOUN:
 			case VERB:
+			case ADVERB:
+			case AUXILIARY:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(57);
+				setState(67);
 				sentence();
-				setState(58);
+				setState(68);
 				sentence_tail();
 				}
 				break;
@@ -274,9 +278,9 @@ public class GramaticaParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(63);
+			setState(73);
 			verbp_l();
-			setState(64);
+			setState(74);
 			match(PERIOD);
 			}
 		}
@@ -319,9 +323,9 @@ public class GramaticaParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(66);
+			setState(76);
 			verbp();
-			setState(67);
+			setState(77);
 			verbp_t();
 			}
 		}
@@ -345,6 +349,7 @@ public class GramaticaParser extends Parser {
 			return getRuleContext(Verbp_tContext.class,0);
 		}
 		public TerminalNode COMMA() { return getToken(GramaticaParser.COMMA, 0); }
+		public TerminalNode CCONJUNCTION() { return getToken(GramaticaParser.CCONJUNCTION, 0); }
 		public Verbp_tContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -363,7 +368,7 @@ public class GramaticaParser extends Parser {
 		Verbp_tContext _localctx = new Verbp_tContext(_ctx, getState());
 		enterRule(_localctx, 10, RULE_verbp_t);
 		try {
-			setState(76);
+			setState(91);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case PRONOUN:
@@ -371,23 +376,41 @@ public class GramaticaParser extends Parser {
 			case PROPERNOUN:
 			case NOUN:
 			case VERB:
+			case ADVERB:
+			case AUXILIARY:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(69);
+				setState(79);
 				verbp();
-				setState(70);
+				setState(80);
 				verbp_t();
 				}
 				break;
 			case COMMA:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(72);
+				setState(82);
 				match(COMMA);
-				setState(73);
+				setState(83);
 				verbp();
-				setState(74);
+				setState(84);
 				verbp_t();
+				}
+				break;
+			case CCONJUNCTION:
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(86);
+				match(CCONJUNCTION);
+				setState(87);
+				verbp();
+				setState(88);
+				verbp_t();
+				}
+				break;
+			case PERIOD:
+				enterOuterAlt(_localctx, 4);
+				{
 				}
 				break;
 			default:
@@ -431,22 +454,22 @@ public class GramaticaParser extends Parser {
 		VerbpContext _localctx = new VerbpContext(_ctx, getState());
 		enterRule(_localctx, 12, RULE_verbp);
 		try {
-			setState(82);
+			setState(97);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(78);
+				setState(93);
 				verb_clause();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(79);
+				setState(94);
 				verb_clause();
-				setState(80);
+				setState(95);
 				sconjp();
 				}
 				break;
@@ -471,6 +494,9 @@ public class GramaticaParser extends Parser {
 		public Tra_verbpContext tra_verbp() {
 			return getRuleContext(Tra_verbpContext.class,0);
 		}
+		public Aux_verbpContext aux_verbp() {
+			return getRuleContext(Aux_verbpContext.class,0);
+		}
 		public Verb_clauseContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -489,14 +515,14 @@ public class GramaticaParser extends Parser {
 		Verb_clauseContext _localctx = new Verb_clauseContext(_ctx, getState());
 		enterRule(_localctx, 14, RULE_verb_clause);
 		try {
-			setState(86);
+			setState(102);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case PRONOUN:
 			case VERB:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(84);
+				setState(99);
 				intr_verbp();
 				}
 				break;
@@ -505,8 +531,16 @@ public class GramaticaParser extends Parser {
 			case NOUN:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(85);
+				setState(100);
 				tra_verbp();
+				}
+				break;
+			case ADVERB:
+			case AUXILIARY:
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(101);
+				aux_verbp();
 				}
 				break;
 			default:
@@ -549,7 +583,7 @@ public class GramaticaParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(88);
+			setState(104);
 			adp_intr_verbp();
 			}
 		}
@@ -592,9 +626,9 @@ public class GramaticaParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(90);
+			setState(106);
 			verb();
-			setState(91);
+			setState(107);
 			adpp();
 			}
 		}
@@ -634,7 +668,7 @@ public class GramaticaParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(93);
+			setState(109);
 			svo_tra_verbp();
 			}
 		}
@@ -651,11 +685,11 @@ public class GramaticaParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class Svo_tra_verbpContext extends ParserRuleContext {
-		public List<NounpContext> nounp() {
-			return getRuleContexts(NounpContext.class);
+		public List<Nounp_lContext> nounp_l() {
+			return getRuleContexts(Nounp_lContext.class);
 		}
-		public NounpContext nounp(int i) {
-			return getRuleContext(NounpContext.class,i);
+		public Nounp_lContext nounp_l(int i) {
+			return getRuleContext(Nounp_lContext.class,i);
 		}
 		public VerbContext verb() {
 			return getRuleContext(VerbContext.class,0);
@@ -680,12 +714,165 @@ public class GramaticaParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(95);
-			nounp();
-			setState(96);
+			setState(111);
+			nounp_l();
+			setState(112);
 			verb();
-			setState(97);
-			nounp();
+			setState(113);
+			nounp_l();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
+	public static class Aux_verbpContext extends ParserRuleContext {
+		public Van_aux_verbpContext van_aux_verbp() {
+			return getRuleContext(Van_aux_verbpContext.class,0);
+		}
+		public Nvv_aux_verbpContext nvv_aux_verbp() {
+			return getRuleContext(Nvv_aux_verbpContext.class,0);
+		}
+		public Aux_verbpContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_aux_verbp; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).enterAux_verbp(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).exitAux_verbp(this);
+		}
+	}
+
+	public final Aux_verbpContext aux_verbp() throws RecognitionException {
+		Aux_verbpContext _localctx = new Aux_verbpContext(_ctx, getState());
+		enterRule(_localctx, 24, RULE_aux_verbp);
+		try {
+			setState(117);
+			_errHandler.sync(this);
+			switch (_input.LA(1)) {
+			case AUXILIARY:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(115);
+				van_aux_verbp();
+				}
+				break;
+			case ADVERB:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(116);
+				nvv_aux_verbp();
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
+	public static class Van_aux_verbpContext extends ParserRuleContext {
+		public TerminalNode AUXILIARY() { return getToken(GramaticaParser.AUXILIARY, 0); }
+		public TerminalNode ADJECTIVE() { return getToken(GramaticaParser.ADJECTIVE, 0); }
+		public Nounp_lContext nounp_l() {
+			return getRuleContext(Nounp_lContext.class,0);
+		}
+		public Van_aux_verbpContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_van_aux_verbp; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).enterVan_aux_verbp(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).exitVan_aux_verbp(this);
+		}
+	}
+
+	public final Van_aux_verbpContext van_aux_verbp() throws RecognitionException {
+		Van_aux_verbpContext _localctx = new Van_aux_verbpContext(_ctx, getState());
+		enterRule(_localctx, 26, RULE_van_aux_verbp);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(119);
+			match(AUXILIARY);
+			setState(120);
+			match(ADJECTIVE);
+			setState(121);
+			nounp_l();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
+	public static class Nvv_aux_verbpContext extends ParserRuleContext {
+		public TerminalNode ADVERB() { return getToken(GramaticaParser.ADVERB, 0); }
+		public Nounp_lContext nounp_l() {
+			return getRuleContext(Nounp_lContext.class,0);
+		}
+		public TerminalNode AUXILIARY() { return getToken(GramaticaParser.AUXILIARY, 0); }
+		public TerminalNode VERB() { return getToken(GramaticaParser.VERB, 0); }
+		public Nvv_aux_verbpContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_nvv_aux_verbp; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).enterNvv_aux_verbp(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).exitNvv_aux_verbp(this);
+		}
+	}
+
+	public final Nvv_aux_verbpContext nvv_aux_verbp() throws RecognitionException {
+		Nvv_aux_verbpContext _localctx = new Nvv_aux_verbpContext(_ctx, getState());
+		enterRule(_localctx, 28, RULE_nvv_aux_verbp);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(123);
+			match(ADVERB);
+			setState(124);
+			nounp_l();
+			setState(125);
+			match(AUXILIARY);
+			setState(126);
+			match(VERB);
 			}
 		}
 		catch (RecognitionException re) {
@@ -720,11 +907,11 @@ public class GramaticaParser extends Parser {
 
 	public final SconjpContext sconjp() throws RecognitionException {
 		SconjpContext _localctx = new SconjpContext(_ctx, getState());
-		enterRule(_localctx, 24, RULE_sconjp);
+		enterRule(_localctx, 30, RULE_sconjp);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(99);
+			setState(128);
 			noun_sconjp();
 			}
 		}
@@ -742,8 +929,8 @@ public class GramaticaParser extends Parser {
 	@SuppressWarnings("CheckReturnValue")
 	public static class Noun_sconjpContext extends ParserRuleContext {
 		public TerminalNode SCONJUNCTION() { return getToken(GramaticaParser.SCONJUNCTION, 0); }
-		public NounpContext nounp() {
-			return getRuleContext(NounpContext.class,0);
+		public Nounp_lContext nounp_l() {
+			return getRuleContext(Nounp_lContext.class,0);
 		}
 		public Noun_sconjpContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -761,14 +948,14 @@ public class GramaticaParser extends Parser {
 
 	public final Noun_sconjpContext noun_sconjp() throws RecognitionException {
 		Noun_sconjpContext _localctx = new Noun_sconjpContext(_ctx, getState());
-		enterRule(_localctx, 26, RULE_noun_sconjp);
+		enterRule(_localctx, 32, RULE_noun_sconjp);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(101);
+			setState(130);
 			match(SCONJUNCTION);
-			setState(102);
-			nounp();
+			setState(131);
+			nounp_l();
 			}
 		}
 		catch (RecognitionException re) {
@@ -806,23 +993,137 @@ public class GramaticaParser extends Parser {
 
 	public final NounpContext nounp() throws RecognitionException {
 		NounpContext _localctx = new NounpContext(_ctx, getState());
-		enterRule(_localctx, 28, RULE_nounp);
+		enterRule(_localctx, 34, RULE_nounp);
 		try {
-			setState(106);
+			setState(135);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,4,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,5,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(104);
+				setState(133);
 				adj_nounp();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(105);
+				setState(134);
 				naked_nounp();
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
+	public static class Nounp_lContext extends ParserRuleContext {
+		public NounpContext nounp() {
+			return getRuleContext(NounpContext.class,0);
+		}
+		public Nounp_tContext nounp_t() {
+			return getRuleContext(Nounp_tContext.class,0);
+		}
+		public Nounp_lContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_nounp_l; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).enterNounp_l(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).exitNounp_l(this);
+		}
+	}
+
+	public final Nounp_lContext nounp_l() throws RecognitionException {
+		Nounp_lContext _localctx = new Nounp_lContext(_ctx, getState());
+		enterRule(_localctx, 36, RULE_nounp_l);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(137);
+			nounp();
+			setState(138);
+			nounp_t();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
+	public static class Nounp_tContext extends ParserRuleContext {
+		public TerminalNode COMMA() { return getToken(GramaticaParser.COMMA, 0); }
+		public NounpContext nounp() {
+			return getRuleContext(NounpContext.class,0);
+		}
+		public Nounp_tContext nounp_t() {
+			return getRuleContext(Nounp_tContext.class,0);
+		}
+		public TerminalNode CCONJUNCTION() { return getToken(GramaticaParser.CCONJUNCTION, 0); }
+		public Nounp_tContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_nounp_t; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).enterNounp_t(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof GramaticaListener ) ((GramaticaListener)listener).exitNounp_t(this);
+		}
+	}
+
+	public final Nounp_tContext nounp_t() throws RecognitionException {
+		Nounp_tContext _localctx = new Nounp_tContext(_ctx, getState());
+		enterRule(_localctx, 38, RULE_nounp_t);
+		try {
+			setState(147);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,6,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(140);
+				match(COMMA);
+				setState(141);
+				nounp();
+				setState(142);
+				nounp_t();
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(144);
+				match(CCONJUNCTION);
+				setState(145);
+				nounp();
+				}
+				break;
+			case 3:
+				enterOuterAlt(_localctx, 3);
+				{
 				}
 				break;
 			}
@@ -862,13 +1163,13 @@ public class GramaticaParser extends Parser {
 
 	public final Naked_nounpContext naked_nounp() throws RecognitionException {
 		Naked_nounpContext _localctx = new Naked_nounpContext(_ctx, getState());
-		enterRule(_localctx, 30, RULE_naked_nounp);
+		enterRule(_localctx, 40, RULE_naked_nounp);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(108);
+			setState(149);
 			determiner();
-			setState(109);
+			setState(150);
 			noun();
 			}
 		}
@@ -904,11 +1205,11 @@ public class GramaticaParser extends Parser {
 
 	public final Adj_nounpContext adj_nounp() throws RecognitionException {
 		Adj_nounpContext _localctx = new Adj_nounpContext(_ctx, getState());
-		enterRule(_localctx, 32, RULE_adj_nounp);
+		enterRule(_localctx, 42, RULE_adj_nounp);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(111);
+			setState(152);
 			adjf_nounp();
 			}
 		}
@@ -950,15 +1251,15 @@ public class GramaticaParser extends Parser {
 
 	public final Adjf_nounpContext adjf_nounp() throws RecognitionException {
 		Adjf_nounpContext _localctx = new Adjf_nounpContext(_ctx, getState());
-		enterRule(_localctx, 34, RULE_adjf_nounp);
+		enterRule(_localctx, 44, RULE_adjf_nounp);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(113);
+			setState(154);
 			determiner();
-			setState(114);
+			setState(155);
 			noun();
-			setState(115);
+			setState(156);
 			adjective_l();
 			}
 		}
@@ -994,11 +1295,11 @@ public class GramaticaParser extends Parser {
 
 	public final AdppContext adpp() throws RecognitionException {
 		AdppContext _localctx = new AdppContext(_ctx, getState());
-		enterRule(_localctx, 36, RULE_adpp);
+		enterRule(_localctx, 46, RULE_adpp);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(117);
+			setState(158);
 			noun_adpp();
 			}
 		}
@@ -1035,13 +1336,13 @@ public class GramaticaParser extends Parser {
 
 	public final Noun_adppContext noun_adpp() throws RecognitionException {
 		Noun_adppContext _localctx = new Noun_adppContext(_ctx, getState());
-		enterRule(_localctx, 38, RULE_noun_adpp);
+		enterRule(_localctx, 48, RULE_noun_adpp);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(119);
+			setState(160);
 			match(ADPOSITION);
-			setState(120);
+			setState(161);
 			nounp();
 			}
 		}
@@ -1080,13 +1381,13 @@ public class GramaticaParser extends Parser {
 
 	public final Adjective_lContext adjective_l() throws RecognitionException {
 		Adjective_lContext _localctx = new Adjective_lContext(_ctx, getState());
-		enterRule(_localctx, 40, RULE_adjective_l);
+		enterRule(_localctx, 50, RULE_adjective_l);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(122);
+			setState(163);
 			adjective();
-			setState(123);
+			setState(164);
 			adjective_t();
 			}
 		}
@@ -1125,34 +1426,25 @@ public class GramaticaParser extends Parser {
 
 	public final Adjective_tContext adjective_t() throws RecognitionException {
 		Adjective_tContext _localctx = new Adjective_tContext(_ctx, getState());
-		enterRule(_localctx, 42, RULE_adjective_t);
+		enterRule(_localctx, 52, RULE_adjective_t);
 		try {
-			setState(129);
+			setState(170);
 			_errHandler.sync(this);
-			switch (_input.LA(1)) {
-			case ADJECTIVE:
-			case ADVERB:
+			switch ( getInterpreter().adaptivePredict(_input,7,_ctx) ) {
+			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(125);
+				setState(166);
 				adjective();
-				setState(126);
+				setState(167);
 				adjective_t();
 				}
 				break;
-			case PRONOUN:
-			case DETERMINER:
-			case PROPERNOUN:
-			case NOUN:
-			case COMMA:
-			case VERB:
-			case SCONJUNCTION:
+			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
 				}
 				break;
-			default:
-				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1186,24 +1478,24 @@ public class GramaticaParser extends Parser {
 
 	public final AdjectiveContext adjective() throws RecognitionException {
 		AdjectiveContext _localctx = new AdjectiveContext(_ctx, getState());
-		enterRule(_localctx, 44, RULE_adjective);
+		enterRule(_localctx, 54, RULE_adjective);
 		try {
-			setState(134);
+			setState(175);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case ADJECTIVE:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(131);
+				setState(172);
 				match(ADJECTIVE);
 				}
 				break;
 			case ADVERB:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(132);
+				setState(173);
 				match(ADVERB);
-				setState(133);
+				setState(174);
 				match(ADJECTIVE);
 				}
 				break;
@@ -1241,15 +1533,15 @@ public class GramaticaParser extends Parser {
 
 	public final DeterminerContext determiner() throws RecognitionException {
 		DeterminerContext _localctx = new DeterminerContext(_ctx, getState());
-		enterRule(_localctx, 46, RULE_determiner);
+		enterRule(_localctx, 56, RULE_determiner);
 		try {
-			setState(138);
+			setState(179);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case DETERMINER:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(136);
+				setState(177);
 				match(DETERMINER);
 				}
 				break;
@@ -1294,12 +1586,12 @@ public class GramaticaParser extends Parser {
 
 	public final NounContext noun() throws RecognitionException {
 		NounContext _localctx = new NounContext(_ctx, getState());
-		enterRule(_localctx, 48, RULE_noun);
+		enterRule(_localctx, 58, RULE_noun);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(140);
+			setState(181);
 			_la = _input.LA(1);
 			if ( !(_la==PROPERNOUN || _la==NOUN) ) {
 			_errHandler.recoverInline(this);
@@ -1342,24 +1634,24 @@ public class GramaticaParser extends Parser {
 
 	public final VerbContext verb() throws RecognitionException {
 		VerbContext _localctx = new VerbContext(_ctx, getState());
-		enterRule(_localctx, 50, RULE_verb);
+		enterRule(_localctx, 60, RULE_verb);
 		try {
-			setState(145);
+			setState(186);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case VERB:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(142);
+				setState(183);
 				match(VERB);
 				}
 				break;
 			case PRONOUN:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(143);
+				setState(184);
 				match(PRONOUN);
-				setState(144);
+				setState(185);
 				match(VERB);
 				}
 				break;
@@ -1379,7 +1671,7 @@ public class GramaticaParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001\u000f\u0094\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001"+
+		"\u0004\u0001\u000f\u00bd\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001"+
 		"\u0002\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004"+
 		"\u0002\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007"+
 		"\u0002\b\u0007\b\u0002\t\u0007\t\u0002\n\u0007\n\u0002\u000b\u0007\u000b"+
@@ -1387,75 +1679,102 @@ public class GramaticaParser extends Parser {
 		"\u000f\u0002\u0010\u0007\u0010\u0002\u0011\u0007\u0011\u0002\u0012\u0007"+
 		"\u0012\u0002\u0013\u0007\u0013\u0002\u0014\u0007\u0014\u0002\u0015\u0007"+
 		"\u0015\u0002\u0016\u0007\u0016\u0002\u0017\u0007\u0017\u0002\u0018\u0007"+
-		"\u0018\u0002\u0019\u0007\u0019\u0001\u0000\u0001\u0000\u0001\u0001\u0001"+
-		"\u0001\u0001\u0001\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0003"+
-		"\u0002>\b\u0002\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0004\u0001"+
-		"\u0004\u0001\u0004\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001"+
-		"\u0005\u0001\u0005\u0001\u0005\u0003\u0005M\b\u0005\u0001\u0006\u0001"+
-		"\u0006\u0001\u0006\u0001\u0006\u0003\u0006S\b\u0006\u0001\u0007\u0001"+
-		"\u0007\u0003\u0007W\b\u0007\u0001\b\u0001\b\u0001\t\u0001\t\u0001\t\u0001"+
-		"\n\u0001\n\u0001\u000b\u0001\u000b\u0001\u000b\u0001\u000b\u0001\f\u0001"+
-		"\f\u0001\r\u0001\r\u0001\r\u0001\u000e\u0001\u000e\u0003\u000ek\b\u000e"+
-		"\u0001\u000f\u0001\u000f\u0001\u000f\u0001\u0010\u0001\u0010\u0001\u0011"+
-		"\u0001\u0011\u0001\u0011\u0001\u0011\u0001\u0012\u0001\u0012\u0001\u0013"+
-		"\u0001\u0013\u0001\u0013\u0001\u0014\u0001\u0014\u0001\u0014\u0001\u0015"+
-		"\u0001\u0015\u0001\u0015\u0001\u0015\u0003\u0015\u0082\b\u0015\u0001\u0016"+
-		"\u0001\u0016\u0001\u0016\u0003\u0016\u0087\b\u0016\u0001\u0017\u0001\u0017"+
-		"\u0003\u0017\u008b\b\u0017\u0001\u0018\u0001\u0018\u0001\u0019\u0001\u0019"+
-		"\u0001\u0019\u0003\u0019\u0092\b\u0019\u0001\u0019\u0000\u0000\u001a\u0000"+
-		"\u0002\u0004\u0006\b\n\f\u000e\u0010\u0012\u0014\u0016\u0018\u001a\u001c"+
-		"\u001e \"$&(*,.02\u0000\u0001\u0001\u0000\u0003\u0004\u0082\u00004\u0001"+
-		"\u0000\u0000\u0000\u00026\u0001\u0000\u0000\u0000\u0004=\u0001\u0000\u0000"+
-		"\u0000\u0006?\u0001\u0000\u0000\u0000\bB\u0001\u0000\u0000\u0000\nL\u0001"+
-		"\u0000\u0000\u0000\fR\u0001\u0000\u0000\u0000\u000eV\u0001\u0000\u0000"+
-		"\u0000\u0010X\u0001\u0000\u0000\u0000\u0012Z\u0001\u0000\u0000\u0000\u0014"+
-		"]\u0001\u0000\u0000\u0000\u0016_\u0001\u0000\u0000\u0000\u0018c\u0001"+
-		"\u0000\u0000\u0000\u001ae\u0001\u0000\u0000\u0000\u001cj\u0001\u0000\u0000"+
-		"\u0000\u001el\u0001\u0000\u0000\u0000 o\u0001\u0000\u0000\u0000\"q\u0001"+
-		"\u0000\u0000\u0000$u\u0001\u0000\u0000\u0000&w\u0001\u0000\u0000\u0000"+
-		"(z\u0001\u0000\u0000\u0000*\u0081\u0001\u0000\u0000\u0000,\u0086\u0001"+
-		"\u0000\u0000\u0000.\u008a\u0001\u0000\u0000\u00000\u008c\u0001\u0000\u0000"+
-		"\u00002\u0091\u0001\u0000\u0000\u000045\u0003\u0002\u0001\u00005\u0001"+
-		"\u0001\u0000\u0000\u000067\u0003\u0006\u0003\u000078\u0003\u0004\u0002"+
-		"\u00008\u0003\u0001\u0000\u0000\u00009:\u0003\u0006\u0003\u0000:;\u0003"+
-		"\u0004\u0002\u0000;>\u0001\u0000\u0000\u0000<>\u0001\u0000\u0000\u0000"+
-		"=9\u0001\u0000\u0000\u0000=<\u0001\u0000\u0000\u0000>\u0005\u0001\u0000"+
-		"\u0000\u0000?@\u0003\b\u0004\u0000@A\u0005\u0007\u0000\u0000A\u0007\u0001"+
-		"\u0000\u0000\u0000BC\u0003\f\u0006\u0000CD\u0003\n\u0005\u0000D\t\u0001"+
-		"\u0000\u0000\u0000EF\u0003\f\u0006\u0000FG\u0003\n\u0005\u0000GM\u0001"+
-		"\u0000\u0000\u0000HI\u0005\u0006\u0000\u0000IJ\u0003\f\u0006\u0000JK\u0003"+
-		"\n\u0005\u0000KM\u0001\u0000\u0000\u0000LE\u0001\u0000\u0000\u0000LH\u0001"+
-		"\u0000\u0000\u0000M\u000b\u0001\u0000\u0000\u0000NS\u0003\u000e\u0007"+
-		"\u0000OP\u0003\u000e\u0007\u0000PQ\u0003\u0018\f\u0000QS\u0001\u0000\u0000"+
-		"\u0000RN\u0001\u0000\u0000\u0000RO\u0001\u0000\u0000\u0000S\r\u0001\u0000"+
-		"\u0000\u0000TW\u0003\u0010\b\u0000UW\u0003\u0014\n\u0000VT\u0001\u0000"+
-		"\u0000\u0000VU\u0001\u0000\u0000\u0000W\u000f\u0001\u0000\u0000\u0000"+
-		"XY\u0003\u0012\t\u0000Y\u0011\u0001\u0000\u0000\u0000Z[\u00032\u0019\u0000"+
-		"[\\\u0003$\u0012\u0000\\\u0013\u0001\u0000\u0000\u0000]^\u0003\u0016\u000b"+
-		"\u0000^\u0015\u0001\u0000\u0000\u0000_`\u0003\u001c\u000e\u0000`a\u0003"+
-		"2\u0019\u0000ab\u0003\u001c\u000e\u0000b\u0017\u0001\u0000\u0000\u0000"+
-		"cd\u0003\u001a\r\u0000d\u0019\u0001\u0000\u0000\u0000ef\u0005\r\u0000"+
-		"\u0000fg\u0003\u001c\u000e\u0000g\u001b\u0001\u0000\u0000\u0000hk\u0003"+
-		" \u0010\u0000ik\u0003\u001e\u000f\u0000jh\u0001\u0000\u0000\u0000ji\u0001"+
-		"\u0000\u0000\u0000k\u001d\u0001\u0000\u0000\u0000lm\u0003.\u0017\u0000"+
-		"mn\u00030\u0018\u0000n\u001f\u0001\u0000\u0000\u0000op\u0003\"\u0011\u0000"+
-		"p!\u0001\u0000\u0000\u0000qr\u0003.\u0017\u0000rs\u00030\u0018\u0000s"+
-		"t\u0003(\u0014\u0000t#\u0001\u0000\u0000\u0000uv\u0003&\u0013\u0000v%"+
-		"\u0001\u0000\u0000\u0000wx\u0005\u000b\u0000\u0000xy\u0003\u001c\u000e"+
-		"\u0000y\'\u0001\u0000\u0000\u0000z{\u0003,\u0016\u0000{|\u0003*\u0015"+
-		"\u0000|)\u0001\u0000\u0000\u0000}~\u0003,\u0016\u0000~\u007f\u0003*\u0015"+
-		"\u0000\u007f\u0082\u0001\u0000\u0000\u0000\u0080\u0082\u0001\u0000\u0000"+
-		"\u0000\u0081}\u0001\u0000\u0000\u0000\u0081\u0080\u0001\u0000\u0000\u0000"+
-		"\u0082+\u0001\u0000\u0000\u0000\u0083\u0087\u0005\u0005\u0000\u0000\u0084"+
-		"\u0085\u0005\t\u0000\u0000\u0085\u0087\u0005\u0005\u0000\u0000\u0086\u0083"+
-		"\u0001\u0000\u0000\u0000\u0086\u0084\u0001\u0000\u0000\u0000\u0087-\u0001"+
-		"\u0000\u0000\u0000\u0088\u008b\u0005\u0002\u0000\u0000\u0089\u008b\u0001"+
-		"\u0000\u0000\u0000\u008a\u0088\u0001\u0000\u0000\u0000\u008a\u0089\u0001"+
-		"\u0000\u0000\u0000\u008b/\u0001\u0000\u0000\u0000\u008c\u008d\u0007\u0000"+
-		"\u0000\u0000\u008d1\u0001\u0000\u0000\u0000\u008e\u0092\u0005\b\u0000"+
-		"\u0000\u008f\u0090\u0005\u0001\u0000\u0000\u0090\u0092\u0005\b\u0000\u0000"+
-		"\u0091\u008e\u0001\u0000\u0000\u0000\u0091\u008f\u0001\u0000\u0000\u0000"+
-		"\u00923\u0001\u0000\u0000\u0000\t=LRVj\u0081\u0086\u008a\u0091";
+		"\u0018\u0002\u0019\u0007\u0019\u0002\u001a\u0007\u001a\u0002\u001b\u0007"+
+		"\u001b\u0002\u001c\u0007\u001c\u0002\u001d\u0007\u001d\u0002\u001e\u0007"+
+		"\u001e\u0001\u0000\u0001\u0000\u0001\u0001\u0001\u0001\u0001\u0001\u0001"+
+		"\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0003\u0002H\b\u0002\u0001"+
+		"\u0003\u0001\u0003\u0001\u0003\u0001\u0004\u0001\u0004\u0001\u0004\u0001"+
+		"\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001"+
+		"\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0003"+
+		"\u0005\\\b\u0005\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0003"+
+		"\u0006b\b\u0006\u0001\u0007\u0001\u0007\u0001\u0007\u0003\u0007g\b\u0007"+
+		"\u0001\b\u0001\b\u0001\t\u0001\t\u0001\t\u0001\n\u0001\n\u0001\u000b\u0001"+
+		"\u000b\u0001\u000b\u0001\u000b\u0001\f\u0001\f\u0003\fv\b\f\u0001\r\u0001"+
+		"\r\u0001\r\u0001\r\u0001\u000e\u0001\u000e\u0001\u000e\u0001\u000e\u0001"+
+		"\u000e\u0001\u000f\u0001\u000f\u0001\u0010\u0001\u0010\u0001\u0010\u0001"+
+		"\u0011\u0001\u0011\u0003\u0011\u0088\b\u0011\u0001\u0012\u0001\u0012\u0001"+
+		"\u0012\u0001\u0013\u0001\u0013\u0001\u0013\u0001\u0013\u0001\u0013\u0001"+
+		"\u0013\u0001\u0013\u0003\u0013\u0094\b\u0013\u0001\u0014\u0001\u0014\u0001"+
+		"\u0014\u0001\u0015\u0001\u0015\u0001\u0016\u0001\u0016\u0001\u0016\u0001"+
+		"\u0016\u0001\u0017\u0001\u0017\u0001\u0018\u0001\u0018\u0001\u0018\u0001"+
+		"\u0019\u0001\u0019\u0001\u0019\u0001\u001a\u0001\u001a\u0001\u001a\u0001"+
+		"\u001a\u0003\u001a\u00ab\b\u001a\u0001\u001b\u0001\u001b\u0001\u001b\u0003"+
+		"\u001b\u00b0\b\u001b\u0001\u001c\u0001\u001c\u0003\u001c\u00b4\b\u001c"+
+		"\u0001\u001d\u0001\u001d\u0001\u001e\u0001\u001e\u0001\u001e\u0003\u001e"+
+		"\u00bb\b\u001e\u0001\u001e\u0000\u0000\u001f\u0000\u0002\u0004\u0006\b"+
+		"\n\f\u000e\u0010\u0012\u0014\u0016\u0018\u001a\u001c\u001e \"$&(*,.02"+
+		"468:<\u0000\u0001\u0001\u0000\u0003\u0004\u00ac\u0000>\u0001\u0000\u0000"+
+		"\u0000\u0002@\u0001\u0000\u0000\u0000\u0004G\u0001\u0000\u0000\u0000\u0006"+
+		"I\u0001\u0000\u0000\u0000\bL\u0001\u0000\u0000\u0000\n[\u0001\u0000\u0000"+
+		"\u0000\fa\u0001\u0000\u0000\u0000\u000ef\u0001\u0000\u0000\u0000\u0010"+
+		"h\u0001\u0000\u0000\u0000\u0012j\u0001\u0000\u0000\u0000\u0014m\u0001"+
+		"\u0000\u0000\u0000\u0016o\u0001\u0000\u0000\u0000\u0018u\u0001\u0000\u0000"+
+		"\u0000\u001aw\u0001\u0000\u0000\u0000\u001c{\u0001\u0000\u0000\u0000\u001e"+
+		"\u0080\u0001\u0000\u0000\u0000 \u0082\u0001\u0000\u0000\u0000\"\u0087"+
+		"\u0001\u0000\u0000\u0000$\u0089\u0001\u0000\u0000\u0000&\u0093\u0001\u0000"+
+		"\u0000\u0000(\u0095\u0001\u0000\u0000\u0000*\u0098\u0001\u0000\u0000\u0000"+
+		",\u009a\u0001\u0000\u0000\u0000.\u009e\u0001\u0000\u0000\u00000\u00a0"+
+		"\u0001\u0000\u0000\u00002\u00a3\u0001\u0000\u0000\u00004\u00aa\u0001\u0000"+
+		"\u0000\u00006\u00af\u0001\u0000\u0000\u00008\u00b3\u0001\u0000\u0000\u0000"+
+		":\u00b5\u0001\u0000\u0000\u0000<\u00ba\u0001\u0000\u0000\u0000>?\u0003"+
+		"\u0002\u0001\u0000?\u0001\u0001\u0000\u0000\u0000@A\u0003\u0006\u0003"+
+		"\u0000AB\u0003\u0004\u0002\u0000B\u0003\u0001\u0000\u0000\u0000CD\u0003"+
+		"\u0006\u0003\u0000DE\u0003\u0004\u0002\u0000EH\u0001\u0000\u0000\u0000"+
+		"FH\u0001\u0000\u0000\u0000GC\u0001\u0000\u0000\u0000GF\u0001\u0000\u0000"+
+		"\u0000H\u0005\u0001\u0000\u0000\u0000IJ\u0003\b\u0004\u0000JK\u0005\u0007"+
+		"\u0000\u0000K\u0007\u0001\u0000\u0000\u0000LM\u0003\f\u0006\u0000MN\u0003"+
+		"\n\u0005\u0000N\t\u0001\u0000\u0000\u0000OP\u0003\f\u0006\u0000PQ\u0003"+
+		"\n\u0005\u0000Q\\\u0001\u0000\u0000\u0000RS\u0005\u0006\u0000\u0000ST"+
+		"\u0003\f\u0006\u0000TU\u0003\n\u0005\u0000U\\\u0001\u0000\u0000\u0000"+
+		"VW\u0005\f\u0000\u0000WX\u0003\f\u0006\u0000XY\u0003\n\u0005\u0000Y\\"+
+		"\u0001\u0000\u0000\u0000Z\\\u0001\u0000\u0000\u0000[O\u0001\u0000\u0000"+
+		"\u0000[R\u0001\u0000\u0000\u0000[V\u0001\u0000\u0000\u0000[Z\u0001\u0000"+
+		"\u0000\u0000\\\u000b\u0001\u0000\u0000\u0000]b\u0003\u000e\u0007\u0000"+
+		"^_\u0003\u000e\u0007\u0000_`\u0003\u001e\u000f\u0000`b\u0001\u0000\u0000"+
+		"\u0000a]\u0001\u0000\u0000\u0000a^\u0001\u0000\u0000\u0000b\r\u0001\u0000"+
+		"\u0000\u0000cg\u0003\u0010\b\u0000dg\u0003\u0014\n\u0000eg\u0003\u0018"+
+		"\f\u0000fc\u0001\u0000\u0000\u0000fd\u0001\u0000\u0000\u0000fe\u0001\u0000"+
+		"\u0000\u0000g\u000f\u0001\u0000\u0000\u0000hi\u0003\u0012\t\u0000i\u0011"+
+		"\u0001\u0000\u0000\u0000jk\u0003<\u001e\u0000kl\u0003.\u0017\u0000l\u0013"+
+		"\u0001\u0000\u0000\u0000mn\u0003\u0016\u000b\u0000n\u0015\u0001\u0000"+
+		"\u0000\u0000op\u0003$\u0012\u0000pq\u0003<\u001e\u0000qr\u0003$\u0012"+
+		"\u0000r\u0017\u0001\u0000\u0000\u0000sv\u0003\u001a\r\u0000tv\u0003\u001c"+
+		"\u000e\u0000us\u0001\u0000\u0000\u0000ut\u0001\u0000\u0000\u0000v\u0019"+
+		"\u0001\u0000\u0000\u0000wx\u0005\n\u0000\u0000xy\u0005\u0005\u0000\u0000"+
+		"yz\u0003$\u0012\u0000z\u001b\u0001\u0000\u0000\u0000{|\u0005\t\u0000\u0000"+
+		"|}\u0003$\u0012\u0000}~\u0005\n\u0000\u0000~\u007f\u0005\b\u0000\u0000"+
+		"\u007f\u001d\u0001\u0000\u0000\u0000\u0080\u0081\u0003 \u0010\u0000\u0081"+
+		"\u001f\u0001\u0000\u0000\u0000\u0082\u0083\u0005\r\u0000\u0000\u0083\u0084"+
+		"\u0003$\u0012\u0000\u0084!\u0001\u0000\u0000\u0000\u0085\u0088\u0003*"+
+		"\u0015\u0000\u0086\u0088\u0003(\u0014\u0000\u0087\u0085\u0001\u0000\u0000"+
+		"\u0000\u0087\u0086\u0001\u0000\u0000\u0000\u0088#\u0001\u0000\u0000\u0000"+
+		"\u0089\u008a\u0003\"\u0011\u0000\u008a\u008b\u0003&\u0013\u0000\u008b"+
+		"%\u0001\u0000\u0000\u0000\u008c\u008d\u0005\u0006\u0000\u0000\u008d\u008e"+
+		"\u0003\"\u0011\u0000\u008e\u008f\u0003&\u0013\u0000\u008f\u0094\u0001"+
+		"\u0000\u0000\u0000\u0090\u0091\u0005\f\u0000\u0000\u0091\u0094\u0003\""+
+		"\u0011\u0000\u0092\u0094\u0001\u0000\u0000\u0000\u0093\u008c\u0001\u0000"+
+		"\u0000\u0000\u0093\u0090\u0001\u0000\u0000\u0000\u0093\u0092\u0001\u0000"+
+		"\u0000\u0000\u0094\'\u0001\u0000\u0000\u0000\u0095\u0096\u00038\u001c"+
+		"\u0000\u0096\u0097\u0003:\u001d\u0000\u0097)\u0001\u0000\u0000\u0000\u0098"+
+		"\u0099\u0003,\u0016\u0000\u0099+\u0001\u0000\u0000\u0000\u009a\u009b\u0003"+
+		"8\u001c\u0000\u009b\u009c\u0003:\u001d\u0000\u009c\u009d\u00032\u0019"+
+		"\u0000\u009d-\u0001\u0000\u0000\u0000\u009e\u009f\u00030\u0018\u0000\u009f"+
+		"/\u0001\u0000\u0000\u0000\u00a0\u00a1\u0005\u000b\u0000\u0000\u00a1\u00a2"+
+		"\u0003\"\u0011\u0000\u00a21\u0001\u0000\u0000\u0000\u00a3\u00a4\u0003"+
+		"6\u001b\u0000\u00a4\u00a5\u00034\u001a\u0000\u00a53\u0001\u0000\u0000"+
+		"\u0000\u00a6\u00a7\u00036\u001b\u0000\u00a7\u00a8\u00034\u001a\u0000\u00a8"+
+		"\u00ab\u0001\u0000\u0000\u0000\u00a9\u00ab\u0001\u0000\u0000\u0000\u00aa"+
+		"\u00a6\u0001\u0000\u0000\u0000\u00aa\u00a9\u0001\u0000\u0000\u0000\u00ab"+
+		"5\u0001\u0000\u0000\u0000\u00ac\u00b0\u0005\u0005\u0000\u0000\u00ad\u00ae"+
+		"\u0005\t\u0000\u0000\u00ae\u00b0\u0005\u0005\u0000\u0000\u00af\u00ac\u0001"+
+		"\u0000\u0000\u0000\u00af\u00ad\u0001\u0000\u0000\u0000\u00b07\u0001\u0000"+
+		"\u0000\u0000\u00b1\u00b4\u0005\u0002\u0000\u0000\u00b2\u00b4\u0001\u0000"+
+		"\u0000\u0000\u00b3\u00b1\u0001\u0000\u0000\u0000\u00b3\u00b2\u0001\u0000"+
+		"\u0000\u0000\u00b49\u0001\u0000\u0000\u0000\u00b5\u00b6\u0007\u0000\u0000"+
+		"\u0000\u00b6;\u0001\u0000\u0000\u0000\u00b7\u00bb\u0005\b\u0000\u0000"+
+		"\u00b8\u00b9\u0005\u0001\u0000\u0000\u00b9\u00bb\u0005\b\u0000\u0000\u00ba"+
+		"\u00b7\u0001\u0000\u0000\u0000\u00ba\u00b8\u0001\u0000\u0000\u0000\u00bb"+
+		"=\u0001\u0000\u0000\u0000\u000bG[afu\u0087\u0093\u00aa\u00af\u00b3\u00ba";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

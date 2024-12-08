@@ -160,6 +160,42 @@ public class GramaticaBaseListener implements GramaticaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterAux_verbp(GramaticaParser.Aux_verbpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAux_verbp(GramaticaParser.Aux_verbpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterVan_aux_verbp(GramaticaParser.Van_aux_verbpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVan_aux_verbp(GramaticaParser.Van_aux_verbpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNvv_aux_verbp(GramaticaParser.Nvv_aux_verbpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNvv_aux_verbp(GramaticaParser.Nvv_aux_verbpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterSconjp(GramaticaParser.SconjpContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -191,6 +227,30 @@ public class GramaticaBaseListener implements GramaticaListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitNounp(GramaticaParser.NounpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNounp_l(GramaticaParser.Nounp_lContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNounp_l(GramaticaParser.Nounp_lContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNounp_t(GramaticaParser.Nounp_tContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNounp_t(GramaticaParser.Nounp_tContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

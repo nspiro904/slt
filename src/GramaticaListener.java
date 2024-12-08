@@ -127,6 +127,36 @@ public interface GramaticaListener extends ParseTreeListener {
 	 */
 	void exitSvo_tra_verbp(GramaticaParser.Svo_tra_verbpContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link GramaticaParser#aux_verbp}.
+	 * @param ctx the parse tree
+	 */
+	void enterAux_verbp(GramaticaParser.Aux_verbpContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GramaticaParser#aux_verbp}.
+	 * @param ctx the parse tree
+	 */
+	void exitAux_verbp(GramaticaParser.Aux_verbpContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GramaticaParser#van_aux_verbp}.
+	 * @param ctx the parse tree
+	 */
+	void enterVan_aux_verbp(GramaticaParser.Van_aux_verbpContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GramaticaParser#van_aux_verbp}.
+	 * @param ctx the parse tree
+	 */
+	void exitVan_aux_verbp(GramaticaParser.Van_aux_verbpContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GramaticaParser#nvv_aux_verbp}.
+	 * @param ctx the parse tree
+	 */
+	void enterNvv_aux_verbp(GramaticaParser.Nvv_aux_verbpContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GramaticaParser#nvv_aux_verbp}.
+	 * @param ctx the parse tree
+	 */
+	void exitNvv_aux_verbp(GramaticaParser.Nvv_aux_verbpContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link GramaticaParser#sconjp}.
 	 * @param ctx the parse tree
 	 */
@@ -156,6 +186,26 @@ public interface GramaticaListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitNounp(GramaticaParser.NounpContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GramaticaParser#nounp_l}.
+	 * @param ctx the parse tree
+	 */
+	void enterNounp_l(GramaticaParser.Nounp_lContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GramaticaParser#nounp_l}.
+	 * @param ctx the parse tree
+	 */
+	void exitNounp_l(GramaticaParser.Nounp_lContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GramaticaParser#nounp_t}.
+	 * @param ctx the parse tree
+	 */
+	void enterNounp_t(GramaticaParser.Nounp_tContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GramaticaParser#nounp_t}.
+	 * @param ctx the parse tree
+	 */
+	void exitNounp_t(GramaticaParser.Nounp_tContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link GramaticaParser#naked_nounp}.
 	 * @param ctx the parse tree
