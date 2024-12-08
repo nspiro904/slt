@@ -43,7 +43,7 @@ noun_sconjp: SCONJUNCTION nounp_l;
 
 /* Noun Phrases */
 
-nounp: adj_nounp | naked_nounp;
+nounp: adj_nounp | naked_nounp | adp_nounp;
 nounp_l: nounp nounp_t;
 nounp_t: COMMA nounp nounp_t | CCONJUNCTION nounp | ;
 
@@ -54,16 +54,24 @@ f_adj_nounp: determiner noun adjective_l;   //adjective final
 l_adj_nounp: determiner adjective noun;
 lf_adj_nounp: determiner adjective noun adjective_l;
 
+adp_nounp: determiner noun adpp;//Adpositional noun phrase
+
+
 /* Adpositional Phrases */
-adpp: noun_adpp;
+adpp: s_adpp | l_adpp;
+s_adpp: noun_adpp | adv_adpp | verb_adpp;
 
-noun_adpp: ADPOSITION nounp;
+noun_adpp: ADPOSITION adj_nounp | ADPOSITION naked_nounp; //having normal nounp here messed with chain adp phrases
+adv_adpp: ADPOSITION ADVERB;
+verb_adpp: ADPOSITION VERB; //strict verb here because assumed infinitive
 
+l_adpp: s_adpp lt_adpp;     //list adpositional
+lt_adpp: s_adpp lt_adpp | ;
 
 /* Adjective Phrases */
 adjective_l: adjective adjective_t;
 adjective_t: adjective adjective_t | ;
-adjective: ADJECTIVE | ADVERB ADJECTIVE;
+adjective: ADJECTIVE | ADVERB ADJECTIVE | NUM; //treating num as adjective may cause problems down the line
 
 
 //presently determiners are the only things that should be optional

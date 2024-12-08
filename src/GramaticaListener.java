@@ -277,6 +277,16 @@ public interface GramaticaListener extends ParseTreeListener {
 	 */
 	void exitLf_adj_nounp(GramaticaParser.Lf_adj_nounpContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link GramaticaParser#adp_nounp}.
+	 * @param ctx the parse tree
+	 */
+	void enterAdp_nounp(GramaticaParser.Adp_nounpContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GramaticaParser#adp_nounp}.
+	 * @param ctx the parse tree
+	 */
+	void exitAdp_nounp(GramaticaParser.Adp_nounpContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link GramaticaParser#adpp}.
 	 * @param ctx the parse tree
 	 */
@@ -287,6 +297,16 @@ public interface GramaticaListener extends ParseTreeListener {
 	 */
 	void exitAdpp(GramaticaParser.AdppContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link GramaticaParser#s_adpp}.
+	 * @param ctx the parse tree
+	 */
+	void enterS_adpp(GramaticaParser.S_adppContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GramaticaParser#s_adpp}.
+	 * @param ctx the parse tree
+	 */
+	void exitS_adpp(GramaticaParser.S_adppContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link GramaticaParser#noun_adpp}.
 	 * @param ctx the parse tree
 	 */
@@ -296,6 +316,46 @@ public interface GramaticaListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitNoun_adpp(GramaticaParser.Noun_adppContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GramaticaParser#adv_adpp}.
+	 * @param ctx the parse tree
+	 */
+	void enterAdv_adpp(GramaticaParser.Adv_adppContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GramaticaParser#adv_adpp}.
+	 * @param ctx the parse tree
+	 */
+	void exitAdv_adpp(GramaticaParser.Adv_adppContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GramaticaParser#verb_adpp}.
+	 * @param ctx the parse tree
+	 */
+	void enterVerb_adpp(GramaticaParser.Verb_adppContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GramaticaParser#verb_adpp}.
+	 * @param ctx the parse tree
+	 */
+	void exitVerb_adpp(GramaticaParser.Verb_adppContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GramaticaParser#l_adpp}.
+	 * @param ctx the parse tree
+	 */
+	void enterL_adpp(GramaticaParser.L_adppContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GramaticaParser#l_adpp}.
+	 * @param ctx the parse tree
+	 */
+	void exitL_adpp(GramaticaParser.L_adppContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GramaticaParser#lt_adpp}.
+	 * @param ctx the parse tree
+	 */
+	void enterLt_adpp(GramaticaParser.Lt_adppContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GramaticaParser#lt_adpp}.
+	 * @param ctx the parse tree
+	 */
+	void exitLt_adpp(GramaticaParser.Lt_adppContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link GramaticaParser#adjective_l}.
 	 * @param ctx the parse tree
